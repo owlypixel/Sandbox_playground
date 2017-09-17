@@ -1,0 +1,28 @@
+$main_color: red;
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #222;
+    color: #eee;
+    font: 4em/2.25 sans-serif;
+}
+
+[type='checkbox']{
+    position: absolute;
+    left: -100vw;
+    + label{
+        order: 1;
+        --w: 50vw; --h: calc(.25*var(--w));
+        width: var(--w); height: var(--h);
+        border-radius: calc(.5*var(--h));
+        background: #fff;
+        text-indent: -200vw;
+    }
+
+    &:not(:checked) ~ [for] .on,
+    &:checked ~ [for] .off {
+        display: none;
+    }
+}

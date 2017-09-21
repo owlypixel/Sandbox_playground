@@ -10,16 +10,46 @@ body {
 }
 
 [type='checkbox']{
+    $c: #1a82b2;
     position: absolute;
     left: -100vw;
     + label{
+        position: relative;
         order: 1;
         --w: 50vw; --h: calc(.25*var(--w));
+        --tr-w: calc(.75*var(--w));
         width: var(--w); height: var(--h);
         border-radius: calc(.5*var(--h));
         background: #fff;
         text-indent: -200vw;
+
+        &:before, &:after {
+            position: absolute;
+            transform: translate(calc(var(--x, 0px) - 50%), -50%);
+            top: 50%; 
+            left: 50%;
+            border-radius: inherit;
+            content: '';
+        }
+        &:before{
+            width: var(--tr-w);
+            height: 6%;
+            background: #ccc;
+        }
+        &:after{
+            padding: 9%;
+            background: $c;
+            --x: calc(.5*var(--tr-w));
+        }
     }
+
+    &:focus + label{
+        box-shadow: 0 0 2px 4px invert($c)
+    }
+
+    &:checked + label {
+        &:after {--x: calc(-.5*var(--tr-w))}
+    }   
 
     &:not(:checked) ~ [for] .on,
     &:checked ~ [for] .off {

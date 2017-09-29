@@ -4,6 +4,11 @@ html(lang="en")
     title= "Owlypixel"
     meta(charset='utf-8')
   body
-    h1 Pug - node template engine1
+    h1 Form
     block content
+    - var labels = ['Password', 'Username'], n = labels.length;
+    - var m = labels.map(c => c.length);
     
+    form
+      h2
+      

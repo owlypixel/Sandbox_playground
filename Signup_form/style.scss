@@ -1,2 +1,99 @@
-$colors: #badd72 #f8ffc2 #f6ca61 #ef6b5e #d892b7 #bb91d9 #5992da #58bae2
+$colors: #badd72 #f8ffc2 #f6ca61 #ef6b5e #d892b7 #bb91d9 #5992da #58bae2;
+$dim: 16rem;
+$rbh: .25rem;
+$off: .5em;
+$hh: .25*$dim;
+$iw: .875*$dim;
+$ih: .125*$dim;
+
+
+//function that takes a list of colors and outputs a list of color-stops
+@function get-stops($colors: $colors){
+    $n: length($colors);
+    $stops: ();
+    $p: 100%/$n;
+    @for $i from 1 to $n {
+        $stops: $stops, nth($colors, $i) $i*$p, nth($colors, $i + 1) 0;
+    }
+    @return $stops;
+}
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: inherit;
+    font: 1em trebuchet ms, tahoma, verdana, sans-serif;
+}
+body {
+    background: #4f5c6c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+form {
+    --c: rgba(#aaa, .5);
+    color: var(--c);
+    position: relative;
+    width: $dim;
+    border-radius: 5px;
+    background: #fff;
+    text-align: center;
+    overflow: hidden;
+}
+h2 {
+    height: $hh;
+    background: linear-gradient(90deg, get-stops()) 0 0/ 100% $rbh no-repeat #f6f6f6;
+    font-size: 1.5em;
+    line-height: $hh + $rbh;
+    color: #a1a1a1;
+}
+input {
+    border-radius: 3px;
+    border: 1px solid var(--c);
+    padding: 0 $off;
+    box-shadow: 0 1px 3px var(--c);
+    margin-top: $ih;
+    width: $iw; height: $ih;
+    &:focus, &:active{
+        outline: none;
+        --c: nth($colors, length($colors));
+        color: #333;
+    }
+}
+label {
+    position: absolute;
+    left: calc(50% - #{.5*$iw});
+    margin-top: .5em;
+    line-height: 1;
+    pointer-events: none;
+}
+span {
+    display: inline-block;
+    transform: translate( $off, calc(#{.5*$ih} + 1em));
+    transition: transform .3s ease-in-out;
+    @for $i from 0 to 8 {
+        &:nth-child(#{$i + 1}) {
+            transition-delay: $i*50ms;
+        }
+    }
+}
+[required] {
+    &:valid, &:focus {
+        & + label span { transform: none}
+    }
+}
+[type="submit"] {
+    margin: .0625*$dim .5*($dim - $iw);
+    height: 1.25*$ih;
+    cursor: pointer;
+    background: #ef6d60;
+    color: #fff;
+    &:focus, &:active {
+        --c: crimson;
+        color: lemonchiffon;
+    }
+}
 

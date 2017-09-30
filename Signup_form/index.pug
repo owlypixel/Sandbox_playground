@@ -10,5 +10,11 @@ html(lang="en")
     - var m = labels.map(c => c.length);
     
     form
-      h2
+      h2 Sign up in seconds
+      while n--
+        input(id=labels[n] type= n ? 'text': 'password' required)
+        label(for=labels[n])
+          - for(var i = 0; i < m[n]; i++)
+            span #{labels[n][i]}
+      input(type="submit" value="Sign me up")
       

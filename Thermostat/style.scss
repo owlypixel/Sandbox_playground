@@ -1,5 +1,28 @@
-$main_color: green;
+$fsu: 3.75;
+$ext-d: 6.75em;
 
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
+
+@mixin sizeAndPos($dim){
+    $off: calc(50% - .5*#{$dim});
+    top: $off;
+    left: $off;
+    width: $dim;
+    height: $dim;
+}
 body {
-    background: $main_color;
+    background: #fdfdfd;
+    *, :after, :before {
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        border-radius: 50%;
+        text-align: center;
+        font: inherit;
+    }
+}
+form {
+    @include sizeAndPos(400px);
+    background: #6d697f;
+    box-shadow: inset 0 -6px 1px 2px rgba(0,0,0,.35), 0 7px 40px 11px rgba(84,81,97,.4);
 }

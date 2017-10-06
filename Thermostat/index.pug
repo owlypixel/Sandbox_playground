@@ -4,5 +4,13 @@ html(lang="en")
     title= "Thermostat"
     meta(charset='utf-8')
   body
-    h1 Thermostat
+
+    - var min = 2, max = 34, val = 19;
+
+    form(style=`--min: ${min}; --max: ${max}; --val: ${val};`)
+      input#temp(type="range" min=min max=max value=val)
+      label(for="temp") heating
+      output(for="temp") #{val}
+      button(style="--s: -1") decrease temperature
+      button(style="--s: 1") increase temperature
     

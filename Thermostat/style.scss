@@ -1,5 +1,9 @@
 $fsu: 3.75;
+$ff: open sans, sans-serif;
 $ext-d: 6.75em;
+$mid-d: 4.25em;
+$int-d: 2.5em;
+$btn-d: .5*($mid-d - $int-d);
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
 
@@ -11,18 +15,61 @@ $ext-d: 6.75em;
     height: $dim;
 }
 body {
+    margin: 0;
+    overflow: hidden;
     background: #fdfdfd;
     *, :after, :before {
+        box-sizing: border-box;
         margin: 0;
         padding: 0;
         position: absolute;
-        border-radius: 50%;
+        border-radius: inherit;
         text-align: center;
         font: inherit;
+        content: '';
     }
 }
 form {
-    @include sizeAndPos(400px);
+    @include sizeAndPos($ext-d);
     background: #6d697f;
+    border-radius: 50%;
     box-shadow: inset 0 -6px 1px 2px rgba(0,0,0,.35), 0 7px 40px 11px rgba(84,81,97,.4);
+    font: 300 #{$fsu*1em}/1 open sans $ff;
+
+    &:before{
+        @include sizeAndPos($mid-d);
+        background: #e3e4ed;
+        box-shadow: 0 15px 35px 11px rgba(46, 44, 58, .6);
+    }
+}
+
+output[for="temp"]{
+    @include sizeAndPos($int-d);
+    box-shadow: 0 15px 35px 5px rgba(96, 93, 111, .3);
+    background: #f8f9fa;
+    line-height: $int-d;
+
+    &:after{
+        display: inline-block;
+        font-size: .675em;
+        margin-top: -.375em;
+        content: '°';
+    }
+}
+
+button{
+    @include sizeAndPos($btn-d);
+    background: deeppink;
+    border-radius: 0; 
+    border: none;
+    white-space: nowrap;
+    text-indent: $btn-d;
+    overflow: hidden;
+
+    &:after {
+        @include sizeAndPos(.25*$btn-d);
+        border: solid 0 currentcolor;
+        border-width: 3px 0 0 3px;
+    
+    }
 }

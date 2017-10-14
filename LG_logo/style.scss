@@ -1,0 +1,46 @@
+body{
+    overflow: hidden;
+    margin: 0;
+    height: 100vh;
+    // background: url(https://rosgsm.ru/uploads/2013/10/LG-Logo.png) 50%/90vmin no-repeat;
+
+}
+
+#logo-lg{
+    --p: 34vmin;
+    --offsetx: calc(50% - var(--p) - var(--bw));
+    --offsety: var(--offsetx);
+    --bw: calc(.1*var(--p));
+    --fg: #fff;
+    --bg: #a51b37;
+    background: var(--bg);
+    border: solid var(--bw) var(--fg);
+    border-top-color: transparent;
+    transform: rotate(45deg);
+    box-shadow: 0 0 0 calc(2.15*var(--bw)) var(--bg);
+
+    &, &:before, &:after {
+        border-radius: 50%;
+        content: '';
+        position: absolute;
+        padding: var(--p);
+        top: var(--offsety, var(--ox)); left: var(--offsetx);
+    }
+
+    &:before{
+        --p: calc(1.5*var(--bw));
+        --offsety: calc(50% - var(--p));
+        --offsetx: calc(20% - var(--p));
+        background: var(--fg);
+    }
+
+    
+
+    &:after{
+        --p: calc(50% + var(--bw));
+        --offsetx: calc(-1*var(--bw));
+        --bar: linear-gradient(var(--fg), var(--fg)) no-repeat;
+        transform: rotate(-45deg);
+        background: var(--bar) 50%/ var(--bw) 52.25%, var(--bar) 59% 75%/ 12.25% var(--bw),  var(--bar) 100% 48%/ 35.25% var(--bw);;
+    }
+}

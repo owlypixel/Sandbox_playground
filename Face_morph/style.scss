@@ -3,3 +3,12 @@ $main_color: green;
 body {
     background: $main_color;
 }
+[x] {
+    fill:gold;
+}
+[d] {
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 4px;
+    stroke-linecap: round;
+}

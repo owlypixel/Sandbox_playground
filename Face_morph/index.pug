@@ -1,12 +1,19 @@
 doctype html
 html(lang="en")
-  head
-    title= "SVG face morph"
-    meta(charset='utf-8')
-  body
-    h1 Face morph
-	- var d = 500, o = -.5*d;
-	- var l = .8*d, r = .5*l;
-	svg(viewBox= [0, 0, d, d]).join(' '))
+	head
+		title= "SVG face morph"
+		meta(charset='utf-8')
+	body
+		h1 Face morph
+		- var d = 500, o = -.5*d;
+		- var l = .8*d, r = .5*l;
+		svg(viewBox=[o, o, d, d].join(' '))
+			rect(x=-r y=-r width=l height=l)
+			ellipse#eye(rx=.1*r ry=.15*r cx=.35*r cy=-.25*r)
+			use(xlink:href='#eye' transform='scale(-1 1)')
+			path(d=`M${-.35*r} ${.35*r}
+							C${-.21*r} ${.14*r}
+							${.21*r} ${.14*r}
+							${.35*r} ${.35*r}`)
 
-    
+		
